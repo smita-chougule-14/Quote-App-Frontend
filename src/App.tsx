@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import QuoteForm from './components/QuoteForm'
+import QuotesList from './components/QuotesList'
 import './App.css';
+import { Provider } from 'react-redux';
+import store from './store';
+import { Quote } from './types';
 
-function App() {
+export default function App() {
+  const [showList, setShowList] = useState(false);
+  const [editQuoteData, setEditQuoteData] = useState<Quote | null>(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      {showList ? <QuotesList setShowList={setShowList} setEditQuoteData={setEditQuoteData} /> : <QuoteForm setShowList={setShowList} editQuoteData={editQuoteData} setEditQuoteData={setEditQuoteData} />}
+    </Provider>
   );
 }
 
-export default App;
