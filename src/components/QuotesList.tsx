@@ -11,7 +11,6 @@ import { Header } from "./QuoteForm"
 
 const QuotesList = ({ setShowList, setEditQuoteData }: { setShowList: (show: boolean) => void, setEditQuoteData: (quote: Quote | null) => void }) => {
   const dispatch = useDispatch<AppDispatch>();
-  debugger
   const quotes = useSelector((state: any) => state.quotes);
   const [selectedTab, setSelectedTab] = useState(0);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
